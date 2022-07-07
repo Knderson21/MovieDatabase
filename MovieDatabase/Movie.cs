@@ -17,12 +17,5 @@ namespace MovieDatabase
             Title = _title;
             Category = _category;
         }
-
-
-        //methods
-        public virtual string DisplayMovies(string category)
-        {
-            return Console.WriteLine($" {Title}  ");
-        }
     }
 }

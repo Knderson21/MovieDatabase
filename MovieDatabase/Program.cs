@@ -5,35 +5,61 @@ using MovieDatabase;
 Console.WriteLine("Welcome to the Movie List Application!");
 Console.WriteLine("There are 10 movies you can pick from.");
 
-List<Movie> allTheMovies = new List<Movie>();
-allTheMovies.Add(new Movie("Iron Man", "Action"));
-allTheMovies.Add(new Movie("Fast and Furious", "Action"));
-allTheMovies.Add(new Movie("Starship Troopers", "SciFi"));
-allTheMovies.Add(new Movie("Titanic", "Romance"));
-allTheMovies.Add(new Movie("Jaws", "Thriller"));
-allTheMovies.Add(new Movie("Inception", "Thriller"));
-allTheMovies.Add(new Movie("Ready Player One", "SciFi"));
-allTheMovies.Add(new Movie("The Notebook", "Romance"));
-allTheMovies.Add(new Movie("Rent", "Musicals"));
-allTheMovies.Add(new Movie("Hairspray", "Musicals"));
-
-
-Console.WriteLine("What category are you interested in? \nYou can pick from Action, SciFi, Thriller, Romance, or Musicals");
-
-while (true)
+List<Movie> movies = new List<Movie>()
 {
+    new Movie("Iron Man", "Action"),
+    new Movie("Fast and Furious", "Action"),
+    new Movie("Starship Troopers", "SciFi"),
+    new Movie("Titanic", "Romance"),
+    new Movie("Jaws", "Thriller"),
+    new Movie("Inception", "Thriller"),
+    new Movie("Ready Player One", "SciFi"),
+    new Movie("The Notebook", "Romance"),
+    new Movie("Rent", "Musicals"),
+    new Movie("Hairspray", "Musicals")
+};
+
+bool runProgram = true;
+
+while (runProgram)
+{
+    Console.WriteLine("What category are you interested in? \nYou can pick from Action, SciFi, Thriller, Romance, or Musicals");
     string category = Console.ReadLine();
-    if (category == "Action" || category == "SciFi" || category == "Romance" || category == "Thriller" || category == "Musicals")
+
+    List<Movie> result = new List<Movie>();
+
+    foreach(Movie m in movies)
     {
-        foreach (Movie movie in allTheMovies)
+        if(m.Category == category)
         {
-            Console.WriteLine(movie.DisplayMovies());
+            result.Add(m);
         }
-        break;
     }
-    else
+    
+    foreach(Movie m in result)
     {
-        Console.WriteLine("That is not a valid category. Please select a category:");
+        Console.WriteLine(m.Title);
+    }
+
+    while (true)
+    {
+        Console.WriteLine("Continue? y/n: ");
+        string cont = Console.ReadLine().ToLower().Trim();
+
+        if (cont == "y")
+        {
+            break;
+        }
+        else if(cont == "n")
+        {
+            runProgram = false;
+            break;
+        }
+        else
+        {
+            Console.WriteLine("That was not y/n");
+        }
+        
     }
 }
 
